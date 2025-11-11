@@ -1,0 +1,88 @@
+/* components/MissionVision.css */
+
+.mission-vision {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.section .content {
+  flex: 1 1 500px;
+  max-width: 600px;
+}
+
+.section .content h2 {
+  font-size: 36px;
+  margin-bottom: 25px;
+  color: #1f2937;
+  border-left: 6px solid #1e90ff;
+  padding-left: 15px;
+}
+
+.section .content p {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.section .image {
+  flex: 1 1 500px;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.section .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.section .image img:hover {
+  transform: scale(1.05);
+}
+
+/* Đảo layout cho Tầm nhìn */
+.vision-section {
+  flex-direction: row-reverse;
+}
+
+.vision-section .content h2 {
+  border-left: 6px solid #28a745;
+  padding-left: 15px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .section {
+    gap: 40px;
+    padding: 60px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  .section .content h2 {
+    font-size: 30px;
+    border-left: 6px solid #1e90ff;
+    padding-left: 10px;
+  }
+
+  .vision-section .content h2 {
+    border-left: 6px solid #28a745;
+  }
+}

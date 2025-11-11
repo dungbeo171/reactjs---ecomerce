@@ -1,0 +1,91 @@
+/* Navbar.css */
+
+/* Container chính */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 70px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Logo */
+.nav-logo img {
+  height: 50px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  position: relative;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  color: #007BFF; /* Màu xanh khi hover */
+}
+
+.nav-menu li hr {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  border: 0;
+  height: 2px;
+  background-color: #007BFF;
+  border-radius: 2px;
+}
+
+/* Cart */
+.cart {
+  position: relative;
+}
+
+.cart img {
+  height: 28px;
+  cursor: pointer;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #FF4136;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none; /* Bạn có thể thêm menu mobile dạng hamburger sau */
+  }
+}
