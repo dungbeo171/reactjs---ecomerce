@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 import { Search } from "lucide-react"; // icon kính lúp
+import { useNavigate } from "react-router-dom"; // dùng để navigate sang /product
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onSearch) onSearch(query); // trả về từ khóa tìm kiếm cho parent
+    if (query.trim() === "") return; // nếu rỗng thì không làm gì
+
+    // Chuyển sang trang /product và truyền query qua URL
+    navigate(`/product?search=${encodeURIComponent(query.trim())}`);
   };
 
   return (

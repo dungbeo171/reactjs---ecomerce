@@ -1,44 +1,51 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../Assets/logo.jpg';
 import cartIcon from '../Assets/cart.svg';
-import { Link } from 'react-router-dom';
 
-const Navbar = ({ menu, setMenu, cartItems = [] }) => {
-  // Tính tổng số lượng sản phẩm
+const Navbar = ({ cartItems = [] }) => {
+  const location = useLocation();
+
+  // Tính tổng số lượng sản phẩm trong giỏ
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  // Lấy path hiện tại
+  const currentPath = location.pathname;
 
   return (
     <div className="navbar">
       <div className="nav-logo">
         <img src={logo} alt="Logo" />
       </div>
+
       <ul className="nav-menu">
-        <li onClick={() => setMenu('home')}>
+        <li className={currentPath === '/' ? 'active' : ''}>
           <Link to="/">Home</Link>
-          {menu === 'home' && <hr />}
+          {currentPath === '/' && <hr />}
         </li>
-        <li onClick={() => setMenu('aboutus')}>
+        <li className={currentPath === '/aboutus' ? 'active' : ''}>
           <Link to="/aboutus">About Us</Link>
-          {menu === 'aboutus' && <hr />}
+          {currentPath === '/aboutus' && <hr />}
         </li>
-        <li onClick={() => setMenu('product')}>
+        <li className={currentPath.startsWith('/product') ? 'active' : ''}>
           <Link to="/product">Product</Link>
-          {menu === 'product' && <hr />}
+          {currentPath.startsWith('/product') && <hr />}
         </li>
-        <li onClick={() => setMenu('news')}>
+        <li className={currentPath === '/news' ? 'active' : ''}>
           <Link to="/news">News</Link>
-          {menu === 'news' && <hr />}
+          {currentPath === '/news' && <hr />}
         </li>
-        <li onClick={() => setMenu('feature')}>
-          <Link to="/feature">Feature</Link>
-          {menu === 'feature' && <hr />}
+        <li className={currentPath === '/feature' ? 'active' : ''}>
+          <Link to="/utilities">Utilities</Link>
+          {currentPath === '/feature' && <hr />}
         </li>
-        <li onClick={() => setMenu('contact')}>
+        <li className={currentPath === '/contact' ? 'active' : ''}>
           <Link to="/contact">Contact</Link>
-          {menu === 'contact' && <hr />}
+          {currentPath === '/contact' && <hr />}
         </li>
       </ul>
+
       <div className="cart">
         <Link to="/cart">
           <img src={cartIcon} alt="Cart" />

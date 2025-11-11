@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
 const Cart = ({ cartItems = [], setCartItems }) => {
-  const [paymentMethod, setPaymentMethod] = useState('COD');
-  const [discountCode, setDiscountCode] = useState('');
-  const [discountValue, setDiscountValue] = useState(0);
+  const navigate = useNavigate();
 
   const updateQuantity = (id, amount) => {
-    console.log("Cart.jsx cartItems:", cartItems);
     setCartItems(prev =>
       prev.map(item =>
         item.id === id
@@ -21,23 +19,15 @@ const Cart = ({ cartItems = [], setCartItems }) => {
     setCartItems(prev => prev.filter(item => item.id !== id));
   };
 
-  const applyDiscount = () => {
-    if (discountCode === 'SALE10') {
-      setDiscountValue(10);
-      alert('Áp dụng giảm giá 10% thành công!');
-    } else {
-      setDiscountValue(0);
-      alert('Mã giảm giá không hợp lệ!');
-    }
-  };
-
   const subtotal = cartItems.reduce((acc, item) => {
-  const numericPrice = Number(item.price.replace(/[^\d.-]/g, ''));
-  return acc + numericPrice * item.quantity;
-}, 0);
-  
+    const numericPrice = Number(item.price.replace(/[^\d.-]/g, ''));
+    return acc + numericPrice * item.quantity;
+  }, 0);
 
-  const total = subtotal - subtotal * (discountValue / 100);
+  const handleCheckout = () => {
+    // Chuyển sang trang thanh toán, có thể truyền cartItems qua state
+    navigate('/checkout', { state: { cartItems } });
+  };
 
   return (
     <div className="cart">
@@ -80,31 +70,12 @@ const Cart = ({ cartItems = [], setCartItems }) => {
           </table>
 
           <div className="cart-summary">
-            <div>
-              <input
-                type="text"
-                placeholder="Mã giảm giá"
-                value={discountCode}
-                onChange={e => setDiscountCode(e.target.value)}
-              />
-              <button onClick={applyDiscount}>Áp dụng</button>
-            </div>
-
-            <div>
-              <label>Hình thức thanh toán:</label>
-              <select
-                value={paymentMethod}
-                onChange={e => setPaymentMethod(e.target.value)}
-              >
-                <option value="COD">COD</option>
-                <option value="Transfer">Chuyển khoản</option>
-                <option value="Card">Thẻ tín dụng</option>
-              </select>
-            </div>
-
             <h3>Tạm tính: {subtotal.toLocaleString()}₫</h3>
-            <h3>Giảm giá: {discountValue}%</h3>
-            <h2>Tổng cộng: {total.toLocaleString()}₫</h2>
+            <h2>Tổng cộng: {subtotal.toLocaleString()}₫</h2>
+
+            <button className="checkout-button" onClick={handleCheckout}>
+              Mua ngay
+            </button>
           </div>
         </>
       )}

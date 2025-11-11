@@ -1,0 +1,89 @@
+.checkout-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.checkout-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.checkout-table th,
+.checkout-table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.checkout-table th {
+  background-color: #f5f5f5;
+}
+
+.checkout-summary {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.discount-section,
+.payment-section {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.discount-section input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.discount-section button,
+.payment-section button,
+.confirm-button {
+  padding: 0.5rem 1rem;
+  background-color: #007BFF;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.discount-section button:hover,
+.payment-section button:hover,
+.confirm-button:hover {
+  background-color: #0056b3;
+}
+
+.payment-section select {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.checkout-summary h3 {
+  margin: 0.5rem 0;
+}
+
+.checkout-summary h2 {
+  margin-top: 1rem;
+  color: #007BFF;
+}
+
+.confirm-button {
+  margin-top: 1rem;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+}

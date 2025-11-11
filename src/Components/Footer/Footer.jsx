@@ -3,6 +3,12 @@ import './Footer.css';
 import { Link } from 'react-router-dom';
 
 const Footer = ({ menu, setMenu }) => {
+  const handleSetMenu = (value) => {
+    if (typeof setMenu === 'function') {
+      setMenu(value);
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -16,10 +22,21 @@ const Footer = ({ menu, setMenu }) => {
         <div className="footer-links">
           <h3>Liên kết nhanh</h3>
           <ul>
-            <li onClick={()=>setMenu("home")}><Link to='/'>Trang chủ</Link></li>
-            <li onClick={()=>setMenu("product")}><Link to='/product'>Sản phẩm</Link></li>
-            <li onClick={()=>setMenu("aboutus")}><Link to='/aboutus'>Giới thiệu</Link></li>
-            <li onClick={()=>setMenu("contact")}><Link to='/contact'>Liên hệ</Link></li>
+            <li onClick={() => handleSetMenu("home")}>
+              <Link to="/">Trang chủ</Link>
+            </li>
+            <li onClick={() => handleSetMenu("product")}>
+              <Link to="/product">Sản phẩm</Link>
+            </li>
+            <li onClick={() => handleSetMenu("aboutus")}>
+              <Link to="/aboutus">Giới thiệu</Link>
+            </li>
+            <li onClick={() => handleSetMenu("contact")}>
+              <Link to="/contact">Liên hệ</Link>
+            </li>
+            <li onClick={() => handleSetMenu("news")}>
+              <Link to="/news">Tin tức</Link>
+            </li>
           </ul>
         </div>
 

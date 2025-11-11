@@ -1,13 +1,13 @@
 import React from "react";
+import { productsData } from "../Assets/productData"; // lấy sản phẩm từ product.js
 import { Link } from "react-router-dom";
-import { productsData } from "../Assets/productData"; // import sản phẩm từ product.js
-import "./FeaturedProducts.css";
+import "./TrendSearch.css";
 
-const FeaturedProducts = ({ cartItems = [], setCartItems = () => {} }) => {
+const TrendSearch = ({ cartItems = [], setCartItems = () => {} }) => {
 
   // Thêm sản phẩm vào giỏ hàng
   const handleAddToCart = (product) => {
-    if (!cartItems || !setCartItems) return; // đảm bảo không crash
+    if (!cartItems || !setCartItems) return;
 
     const exist = cartItems.find((item) => item.id === product.id);
     if (exist) {
@@ -25,16 +25,15 @@ const FeaturedProducts = ({ cartItems = [], setCartItems = () => {} }) => {
     alert(`${product.name} đã được thêm vào giỏ hàng!`);
   };
 
-  // Lấy 4 sản phẩm đầu tiên làm Featured
-  const featuredProducts = productsData.slice(0, 4);
+  // Lấy 4 sản phẩm tiếp theo sau FlashSale (index 8 -> 11)
+  const trendingProducts = productsData.slice(8, 12);
 
   return (
-    <div className="featured-container">
-      <h2 className="featured-title">Sản phẩm nổi bật</h2>
-      <div className="featured-grid">
-        {featuredProducts.map((product) => (
-          <div className="product-card" key={product.id}>
-            {/* Bọc phần click chuyển sang chi tiết */}
+    <div className="trendsearch-container">
+      <h2 className="trendsearch-title">Sản phẩm đang được tìm kiếm</h2>
+      <div className="trendsearch-grid">
+        {trendingProducts.map((product) => (
+          <div className="trendsearch-card" key={product.id}>
             <Link to={`/product/${product.id}`} className="product-link">
               <img src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
@@ -49,8 +48,13 @@ const FeaturedProducts = ({ cartItems = [], setCartItems = () => {} }) => {
           </div>
         ))}
       </div>
+      <div style={{ marginTop: "20px" }}>
+        <Link to="/product">
+          <button className="see-more">Xem thêm sản phẩm</button>
+        </Link>
+      </div>
     </div>
   );
 };
 
-export default FeaturedProducts;
+export default TrendSearch;
